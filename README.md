@@ -1,6 +1,14 @@
-# OpenHorizon-FC — DIY FPV Flight Controller + ESP32 Bridge
+# openhorizon-fc — DIY FPV Flight Controller + ESP32 Bridge
 
-This repo contains a complete technical specification and coherent code skeletons for a DIY FPV quadcopter flight controller using:
+Author:
+
+* Christos Ploutarchou (<cploutarchou@gmail.com>)
+
+License:
+
+* MIT (see [`LICENSE`](LICENSE:1))
+
+This repo has the full project notes plus starting code for a DIY FPV quad flight controller using:
 
 * **FC MCU:** Raspberry Pi **Pico 2 (RP2350)**
 * **Bridge/UI MCU:** **ESP32 DevKit** (Wi‑Fi AP + Web UI + UART bridge)
