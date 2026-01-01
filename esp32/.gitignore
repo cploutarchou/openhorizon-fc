@@ -1,0 +1,13 @@
+# PlatformIO
+.pio
+.pio/
+
+# VSCode (Local configuration)
+.vscode/.browse.c_cpp.db*
+.vscode/ipch
+
+# System
+.DS_Store
+
+# Node.js (Local test dependencies)
+node_modules/
