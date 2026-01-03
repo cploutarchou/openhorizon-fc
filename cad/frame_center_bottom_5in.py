@@ -1,18 +1,24 @@
 import build123d as bd
-import common
 from ocp_vscode import show
+
+import common
 
 # -----------------------------------------------------------------------------
 #  PARAMS
 # -----------------------------------------------------------------------------
 plate_w = 80
 plate_h = 80
-plate_t = 3.0
+plate_t = 4.0
 corner_r = 8
 
 arm_w = 12.0
 arm_slot_clear = 0.6
 arm_slot_len = 36.0
+
+stack_30_5 = True
+stack_20 = True
+m3_hole_d = 3.2
+m2_hole_d = 2.4
 
 arm_clamp_hole_d = 3.2
 arm_clamp_x1 = 12.0
@@ -34,7 +40,7 @@ def arm_clamp_holes(angle_deg):
     return p.part
 
 
-with bd.BuildPart() as frame_center_top:
+with bd.BuildPart() as frame_center_bottom:
     # Base
     bd.add(common.rounded_plate(plate_w, plate_h, plate_t, corner_r))
 
@@ -43,5 +49,22 @@ with bd.BuildPart() as frame_center_top:
         bd.add(arm_slot(angle), mode=bd.Mode.SUBTRACT)
         bd.add(arm_clamp_holes(angle), mode=bd.Mode.SUBTRACT)
 
+    # Electronics mounting 
+    if stack_30_5:
+        locs = []
+        for sx in [-1, 1]:
+            for sy in [-1, 1]:
+                locs.append((sx * 30.5 / 2, sy * 30.5 / 2))
+        with bd.Locations(locs):
+            bd.Cylinder(radius=m3_hole_d / 2, height=plate_t + 2, mode=bd.Mode.SUBTRACT)
+
+    if stack_20:
+        locs = []
+        for sx in [-1, 1]:
+            for sy in [-1, 1]:
+                locs.append((sx * 20 / 2, sy * 20 / 2))
+        with bd.Locations(locs):
+            bd.Cylinder(radius=m2_hole_d / 2, height=plate_t + 2, mode=bd.Mode.SUBTRACT)
+
 if __name__ == "__main__":
-    show(frame_center_top)
+    show(frame_center_bottom)
